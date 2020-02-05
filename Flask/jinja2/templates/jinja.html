@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<head>
+  <title>jinja2 model</title>
+</head>
+
+<body>
+  <div class="">
+    <h2>變量</h2>
+    <p>var : {{ var }}</p>
+    <p>var2 : {{ var2|default('var2 not exist') }}</p>
+    <p>lst : {{ lst }}</p>
+    <p>lst[0] : {{ lst[0] }}</p>
+    <p>lst[1] : {{ lst[1] }}</p>
+    <p>dic : {{ dic }}</p>
+    <p>dic[key1] : {{ key1 }}</p>
+    <p>dic.key1 : {{ dic.key1 }}</p>
+    <p>dic[key2] : {{ key2 }}</p>
+    <p>func('Woo') : {{ func('Woo') }}</p>
+    <p>None: {{ null }}</p>
+    <hr>
+  </div>
+  <div class="">
+    <h3>set & with :</h3>
+    {% with val = 55 %}
+    <p>{{ val }}</p>
+    {% endwith %}
+
+    {% set p_lst = [0, 1]  %}
+    <p>set p_lst : {{ p_lst }}</p>
+
+    {% for i in p_lst %}
+
+    {% endfor %}
+  </div>
+  <hr>
+  <div class="">
+    <h3>for:</h3>
+    <p><i><b>for val in var_lst</b></i></p>
+    {% for val in lst %}
+    <p>{{ val }}</p>
+    {% endfor %}
+    <p><i><b>for key, value in dic.items()</b></i></p>
+    {% for key, value in dic.items() %}
+    <p>key: {{ key }}</p>
+    <p>val: {{ value }}</p>
+    {% endfor %}
+    {% for i in range(2) %}
+    {{ 'va'+'r1' }}
+    {% endfor %}
+    <p><i><b> if: </b></i></p>
+    {% if 1 %}
+    <p>AAA</p>
+    {% elif 1 %}
+    <p>BBB</p>
+    {% else %}
+    <p>CCC</p>
+    {% endif %}
+  </div>
+  <hr>
+  <div class="">
+    <h2>Math & Comparisons & Logic</h2>
+    <p>{{ 1 + 1 }}</p>
+    <p>{{ 'sp' + 'pool' }}</p>
+    <p>{{ 1 == 1 }}</p>
+    <p>{{ True or False }}</p>
+  </div>``
+  <hr>
+  <div class="">
+    <h2>Filter</h2>
+    <p>safe :</p>
+    <p>{{ safe }}</p>
+    <p>safe|e :</p>
+    <p>{{ safe|e }}</p>
+    <p>safe|safe() : </p>
+    <p>{{ safe|safe() }}</p>
+  </div>
+  <hr>
+  <div class="">
+    <h2>Macro</h2>
+    {% macro input(name, value='', type='text') -%}
+    <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}">
+    {%- endmacro %}
+    <ul>
+      <li>name : {{ input('name', '') }}</li>
+      <li>password : {{ input('password', type='password') }}</li>
+    </ul>
+  </div>
+</body>
+
+</html>
